@@ -1,3 +1,6 @@
+@import './todoapp/reset';
+@import './todoapp/App';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
