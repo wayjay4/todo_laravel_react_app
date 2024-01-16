@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/todoapp', function () {
-    return Inertia::render('TodoApp');
+    return Inertia::render('Todo/TodoApp');
 })->name('todo_app');
 
 Route::middleware('auth')->group(function () {
