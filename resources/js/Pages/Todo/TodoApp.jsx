@@ -1,34 +1,16 @@
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useMemo, useRef} from "react";
 import { Head } from '@inertiajs/react';
 import NoTodos from './Components/NoTodos';
 import TodoList from './Components/TodoList';
 import TodoForm from "@/Pages/Todo/Components/TodoForm.jsx";
+import useLocalStorage from "@/Pages/Todo/Hooks/useLocalStorage.js";
 
 export default function TodoApp() {
-    const [name, setName] = useState('');
+    const [name, setName] = useLocalStorage('name', '')
     const nameInputEl = useRef(null);
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            title: 'Finish React Series',
-            isComplete: false,
-            isEditing: false,
-        },
-        {
-            id: 2,
-            title: 'Make Dinner',
-            isComplete: true,
-            isEditing: false,
-        },
-        {
-            id: 3,
-            title: 'Take over world',
-            isComplete: false,
-            isEditing: false,
-        },
-    ]);
+    const [todos, setTodos] = useLocalStorage('todos', []);
 
-    const [idForTodo, setIdForTodo] = useState(4);
+    const [idForTodo, setIdForTodo] = useLocalStorage('idForTodo', 1);
 
     function addTodo(todo) {
         setTodos([...todos, {
@@ -134,6 +116,10 @@ export default function TodoApp() {
         nameInputEl.current.focus();
     }, []);
 
+    function handleNameInput(event) {
+        setName(event.target.value);
+    }
+
     return (
         <div className="todo-app-container">
             <Head title="Todo App" />
@@ -148,7 +134,7 @@ export default function TodoApp() {
                             className="todo-input"
                             placeholder="What is your name"
                             value={name}
-                            onChange={event => setName(event.target.value)}
+                            onChange={handleNameInput}
                         />
                     </form>
 

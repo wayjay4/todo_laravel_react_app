@@ -4,6 +4,7 @@ import TodoItemsRemaining from './TodoItemsRemaining';
 import TodoClearCompleted from './TodoClearCompleted';
 import TodoCompleteAll from './TodoCompleteAll';
 import TodoFilters from "@/Pages/Todo/Components/TodoFilters.jsx";
+import useToggle from "@/Pages/Todo/Hooks/useToggle.js";
 
 TodoList.propTypes = {
     todos: PropTypes.array.isRequired,
@@ -20,6 +21,8 @@ TodoList.propTypes = {
 
 function TodoList(props) {
     const [filter, setFilter] = useState('all');
+    const [isFeaturesOneVisible, setIsFeaturesOneVisible] = useToggle();
+    const [isFeaturesTwoVisible, setIsFeaturesTwoVisible] = useToggle();
 
     return (
         <>
@@ -71,21 +74,35 @@ function TodoList(props) {
                 ))}
             </ul>
 
-            <div className="check-all-container">
-                <TodoCompleteAll completeAllTodos={props.completeAllTodos} />
-
-                <TodoItemsRemaining remaining={props.remaining} />
+            <div className="toggles-container">
+                <button
+                    className="button"
+                    onClick={setIsFeaturesOneVisible}
+                >
+                    Features One Toggle
+                </button>
+                <button className="button" onClick={setIsFeaturesTwoVisible}>Features Two Toggle</button>
             </div>
 
-            <div className="other-buttons-container">
-                <TodoFilters
-                    todosFiltered={props.todosFiltered}
-                    filter={filter}
-                    setFilter={setFilter}
-                />
+            {isFeaturesOneVisible && (
+                <div className="check-all-container">
+                    <TodoCompleteAll completeAllTodos={props.completeAllTodos} />
 
-                <TodoClearCompleted clearCompleted={props.clearCompleted} />
-            </div>
+                    <TodoItemsRemaining remaining={props.remaining} />
+                </div>
+            )}
+
+            {isFeaturesTwoVisible && (
+                <div className="other-buttons-container">
+                    <TodoFilters
+                        todosFiltered={props.todosFiltered}
+                        filter={filter}
+                        setFilter={setFilter}
+                    />
+
+                    <TodoClearCompleted clearCompleted={props.clearCompleted} />
+                </div>
+            )}
         </>
     )
 }
