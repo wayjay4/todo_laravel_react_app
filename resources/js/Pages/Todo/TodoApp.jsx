@@ -4,6 +4,7 @@ import NoTodos from './Components/NoTodos';
 import TodoList from './Components/TodoList';
 import TodoForm from "@/Pages/Todo/Components/TodoForm.jsx";
 import useLocalStorage from "@/Pages/Todo/Hooks/useLocalStorage.js";
+import {CSSTransition, SwitchTransition} from "react-transition-group";
 
 export default function TodoApp() {
     const [name, setName] = useLocalStorage('name', '')
@@ -138,35 +139,49 @@ export default function TodoApp() {
                         />
                     </form>
 
-                    {name && (
+                    <CSSTransition
+                        in={name.length > 0}
+                        timeout={300}
+                        classNames="slide-vertical"
+                        unmountOnExit
+                    >
                         <p className="name-label">Hello, {name}</p>
-                    )}
+                    </CSSTransition>
                 </div>
 
                 <h2>Todo App</h2>
 
                 <TodoForm addTodo={addTodo} />
 
-                { todos.length > 0 ?
-                    (
-                        <TodoList
-                            todos={todos}
-                            todosFiltered={todosFiltered}
-                            completeTodo={completeTodo}
-                            markAsEditing={markAsEditing}
-                            updateTodo={updateTodo}
-                            cancelEdit={cancelEdit}
-                            deleteTodo={deleteTodo}
-                            remaining={remaining}
-                            clearCompleted={clearCompleted}
-                            completeAllTodos={completeAllTodos}
-                        />
-                    )
-                    :
-                    (
-                        <NoTodos />
-                    )
-                }
+                <SwitchTransition mode="out-in">
+                    <CSSTransition
+                        key={todos.length > 0}
+                        timeout={300}
+                        classNames="slide-vertical"
+                        unmountOnExit
+                    >
+                        { todos.length > 0 ?
+                            (
+                                <TodoList
+                                    todos={todos}
+                                    todosFiltered={todosFiltered}
+                                    completeTodo={completeTodo}
+                                    markAsEditing={markAsEditing}
+                                    updateTodo={updateTodo}
+                                    cancelEdit={cancelEdit}
+                                    deleteTodo={deleteTodo}
+                                    remaining={remaining}
+                                    clearCompleted={clearCompleted}
+                                    completeAllTodos={completeAllTodos}
+                                />
+                            )
+                            :
+                            (
+                                <NoTodos />
+                            )
+                        }
+                    </CSSTransition>
+                </SwitchTransition>
             </div>
         </div>
     );
