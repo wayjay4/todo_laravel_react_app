@@ -1,13 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
+import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
-TodoClearCompleted.prototype = {
-    clearCompleted: PropTypes.func.isRequired,
-}
-function TodoClearCompleted(props) {
+function TodoClearCompleted() {
+    const clearCompleted = useTodoStore(state => state.clearCompleted);
+
     return (
         <div>
-            <button className="button" onClick={props.clearCompleted}>Clear completed</button>
+            <button className="button" onClick={clearCompleted}>Clear completed</button>
         </div>
     )
 }

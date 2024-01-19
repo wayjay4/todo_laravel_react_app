@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "prop-types": "^15.8.1",
-        "react-transition-group": "^4.4.5"
+        "react-transition-group": "^4.4.5",
+        "zustand": "^4.4.7"
     }
 }

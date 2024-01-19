@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
+import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
-TodoItemsRemaining.propTypes = {
-    remaining: PropTypes.number.isRequired,
-}
+function TodoItemsRemaining() {
+    const remaining = useTodoStore(state => state.remaining);
 
-function TodoItemsRemaining(props) {
     return (
-        <span>{props.remaining} items remaining</span>
+        <span>{remaining()} items remaining</span>
     )
 }
 

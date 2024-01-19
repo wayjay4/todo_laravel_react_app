@@ -1,13 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
+import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
-TodoCompleteAll.prototype = {
-    completeAllTodos: PropTypes.func.isRequired,
-}
-function TodoCompleteAll(props) {
+function TodoCompleteAll() {
+    const completeAllTodos = useTodoStore(state => state.completeAllTodos);
+
     return (
         <div>
-            <div onClick={props.completeAllTodos} className="button">Check All</div>
+            <div onClick={completeAllTodos} className="button">Check All</div>
         </div>
     )
 }

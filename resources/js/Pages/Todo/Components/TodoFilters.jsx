@@ -1,26 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
+import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
 TodoFilters.prototype = {
-    todosFiltered: PropTypes.func.isRequired,
     filter: PropTypes.string.isRequired,
     setFilter: PropTypes.func.isRequired,
 }
 
 function TodoFilters(props) {
+    const todosFiltered = useTodoStore(state => state.todosFiltered);
+
     return (
         <div>
             <button className={`button filter-button ${props.filter === 'all' ? 'filter-button-active' : ''}`} onClick={()=>{
                 props.setFilter('all');
-                props.todosFiltered('all');
+                todosFiltered('all');
             }}>All</button>
             <button className={`button filter-button ${props.filter === 'active' ? 'filter-button-active' : ''}`} onClick={()=>{
                 props.setFilter('active');
-                props.todosFiltered('active');
+                todosFiltered('active');
             }}>Active</button>
             <button className={`button filter-button ${props.filter === 'completed' ? 'filter-button-active' : ''}`} onClick={()=>{
                 props.setFilter('completed');
-                props.todosFiltered('completed');
+                todosFiltered('completed');
             }}>Completed</button>
         </div>
     )
