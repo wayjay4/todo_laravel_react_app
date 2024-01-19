@@ -2,6 +2,8 @@
 
 A Todo demo application to illustrate Laravel with Inertia/React using Docker.
 
+![TodoApp_screenshot.png](public/images/TodoApp_screenshot.png)
+
 Backend Framework:
 - **Laravel v10.40.0 (PHP v8.3.1):** https://laravel.com/docs/10.x/installation#docker-installation-using-sail
 with Docker, Breeze, Inertia, React scaffolding, and PHP Unit testing
