@@ -7,6 +7,11 @@ const useTodoStore = create((set, get) => ({
         name: event.target.value,
     })),
     todos: (localStorage.getItem('todos')) ? JSON.parse(localStorage.getItem('todos')) : [],
+    setTodos: (todos) => {
+        const idForTodo = todos.slice(-1).pop()['id']+1;
+        set(state => ({todos: todos, idForTodo: idForTodo}));
+        get().saveIdForTodoInLocalStorage(idForTodo);
+    },
     saveTodosInLocalStorage: (todos) => localStorage.setItem('todos', JSON.stringify(todos)),
     idForTodo: (localStorage.getItem('idForTodo')) ? JSON.parse(localStorage.getItem('idForTodo')) : 1,
     saveIdForTodoInLocalStorage: (idForTodo) => localStorage.setItem('idForTodo', JSON.stringify(idForTodo)),

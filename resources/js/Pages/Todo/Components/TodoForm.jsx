@@ -1,12 +1,19 @@
 import React, {useState} from 'react';
 import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
+import {useForm} from "@inertiajs/react";
 
 function TodoForm() {
     const addTodo = useTodoStore(state => state.addTodo);
     const [todoInput, setTodoInput] = useState('');
 
+    const { data, setData, post, processing, errors } = useForm({
+        title: '',
+    })
+
     function handleInput(event) {
         setTodoInput(event.target.value);
+
+        setData('title', event.target.value);
     }
 
     function handleSubmit(event) {
@@ -17,6 +24,8 @@ function TodoForm() {
         }
 
         addTodo(todoInput.trim());
+
+        post('/todos');
 
         setTodoInput('');
     }
