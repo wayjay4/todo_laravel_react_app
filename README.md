@@ -15,7 +15,9 @@ Frontend installed packages:
 - **Prop Types (typechecking):** https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
 - **React Transition Group (defining entering and exiting transitions):** https://reactcommunity.org/react-transition-group/
 
-Note: using client-side local storage to save todo data in this version.
+Note: 
+- using client-side local storage to save todo data
+- using react prop passing (basic state management)
 
 ## Installation
 
