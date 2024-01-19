@@ -12,7 +12,7 @@ function TodoClearCompleted() {
     function handleClearCompletedTodos() {
         clearCompleted();
 
-        destroy('/todos/clearCompletedTodos', {preserveScroll: true});
+        destroy('/todos/clearCompletedTodos');
     }
 
     return (

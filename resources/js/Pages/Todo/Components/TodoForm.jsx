@@ -25,7 +25,7 @@ function TodoForm() {
 
         addTodo(todoInput.trim());
 
-        post('/todos', {preserveScroll: true});
+        post('/todos');
 
         setTodoInput('');
     }
