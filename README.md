@@ -2,9 +2,21 @@
 
 A Todo demo application to illustrate Laravel with Inertia/React using Docker.
 
+Backend Framework:
+- **Laravel v10.40.0 (PHP v8.3.1):** https://laravel.com/docs/10.x/installation#docker-installation-using-sail
+with Docker, Breeze, Inertia, React scaffolding, and PHP Unit testing
+
+Frontend Framework:
+- **React v8.2.0:** https://react.dev/
+
+Frontend installed packages:
+- **Prop Types (typechecking):** https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
+- **React Transition Group (defining entering and exiting transitions):** https://reactcommunity.org/react-transition-group/
+- **Zustand (global state management):** https://github.com/pmndrs/zustand
+
 ## Installation
 
-Install Docker
+Install Docker (v4.26.1)
 
 https://www.docker.com/
 
@@ -21,13 +33,13 @@ Start Docker Container
 sail up
 ```
 
-Install PHP dependencies:
+Install PHP dependencies (composer v2.6.6):
 
 ```sh
 sail composer install
 ```
 
-Install NPM dependencies:
+Install NPM dependencies (npm v10.3.0):
 
 ```sh
 sail npm install
