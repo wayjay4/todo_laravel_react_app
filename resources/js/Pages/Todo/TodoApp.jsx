@@ -6,7 +6,7 @@ import TodoForm from "@/Pages/Todo/Components/TodoForm.jsx";
 import {CSSTransition, SwitchTransition} from "react-transition-group";
 import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
-export default function TodosDB(props) {
+export default function TodoApp(props) {
     const [todos, setTodos] = [
         useTodoStore(state => state.todos),
         useTodoStore(state => state.setTodos)

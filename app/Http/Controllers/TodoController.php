@@ -14,7 +14,7 @@ class TodoController extends Controller
      */
     public function index(): \Inertia\Response
     {
-        return Inertia::render('Todo/TodosDB', [
+        return Inertia::render('Todo/TodoApp', [
             'todos' => Todo::all()
         ]);
     }
