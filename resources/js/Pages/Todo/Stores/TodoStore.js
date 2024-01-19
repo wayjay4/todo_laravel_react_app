@@ -2,8 +2,10 @@ import create from 'zustand';
 
 const useTodoStore = create((set, get) => ({
     name: (localStorage.getItem('name')) ? JSON.parse(localStorage.getItem('name')) : '',
-    saveNameInLocalStorage: (name) => localStorage.setItem('name', JSON.stringify(name)),
-    handleNameInput: (event) => set(() => ({name: event.target.value.trim()})),
+    handleNameInput: (event) => {
+        set(() => ({name: event.target.value.trim()}));
+        localStorage.setItem('name', JSON.stringify(get().name));
+    },
     todos: [],
     setTodos: (todos) => {
         set(state => ({todos: todos}));

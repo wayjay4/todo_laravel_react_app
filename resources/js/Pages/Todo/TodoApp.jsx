@@ -11,10 +11,9 @@ export default function TodoApp(props) {
         useTodoStore(state => state.todos),
         useTodoStore(state => state.setTodos)
     ];
-    const [name, handleNameInput, saveNameInLocalStorage] = [
+    const [name, handleNameInput] = [
         useTodoStore(state => state.name),
         useTodoStore(state => state.handleNameInput),
-        useTodoStore(state => state.saveNameInLocalStorage),
     ];
     const nameInputEl = useRef(null);
 
@@ -23,11 +22,6 @@ export default function TodoApp(props) {
             setTodos(props.todos);
         }
     }, [props.todos]);
-
-    // on changes to name, save in local storage
-    useEffect(() => {
-        saveNameInLocalStorage(name);
-    }, [name]);
 
     useEffect(() => {
         nameInputEl.current.focus();
