@@ -14,6 +14,11 @@ Frontend Framework:
 Frontend installed packages:
 - **Prop Types (typechecking):** https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
 - **React Transition Group (defining entering and exiting transitions):** https://reactcommunity.org/react-transition-group/
+- **Zustand (global state management):** https://github.com/pmndrs/zustand
+
+Note:
+- using client-side local storage to save todo data
+- using react zustand for props state management
 
 ## Installation
 
