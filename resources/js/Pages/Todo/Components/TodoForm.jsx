@@ -16,7 +16,7 @@ function TodoForm() {
             return;
         }
 
-        addTodo(todoInput);
+        addTodo(todoInput.trim());
 
         setTodoInput('');
     }

@@ -1,12 +1,15 @@
 import create from 'zustand';
 
 const useTodoStore = create((set, get) => ({
-    name: '',
-    handleNameInput: (event) => set(state => ({
+    name: (localStorage.getItem('name')) ? JSON.parse(localStorage.getItem('name')) : '',
+    saveNameInLocalStorage: (name) => localStorage.setItem('name', JSON.stringify(name)),
+    handleNameInput: (event) => set(() => ({
         name: event.target.value,
     })),
-    todos: [],
-    idForTodo: 1,
+    todos: (localStorage.getItem('todos')) ? JSON.parse(localStorage.getItem('todos')) : [],
+    saveTodosInLocalStorage: (todos) => localStorage.setItem('todos', JSON.stringify(todos)),
+    idForTodo: (localStorage.getItem('idForTodo')) ? JSON.parse(localStorage.getItem('idForTodo')) : 1,
+    saveIdForTodoInLocalStorage: (idForTodo) => localStorage.setItem('idForTodo', JSON.stringify(idForTodo)),
     todosFiltered: (filter) => {
         if(filter === 'all') {
             return get().todos;
@@ -18,18 +21,22 @@ const useTodoStore = create((set, get) => ({
             return get().todos.filter(todo => todo.isComplete);
         }
     },
-    addTodo: (todoTitle) => set(state => ({
-        todos: [
-            ...state.todos,
-            {
-                id: state.idForTodo,
-                title: todoTitle,
-                isComplete: false,
-                isEditing: false,
-            }
-        ],
-        idForTodo: state.idForTodo +1,
-    })),
+    addTodo: (todoTitle) => {
+        set(state => ({
+            todos: [
+                ...state.todos,
+                {
+                    id: state.idForTodo,
+                    title: todoTitle,
+                    isComplete: false,
+                    isEditing: false,
+                }
+            ],
+            idForTodo: state.idForTodo +1,
+        }));
+
+        get().saveIdForTodoInLocalStorage(get().idForTodo);
+    },
     clearCompleted: () => set(state => ({
         todos: [...state.todos].filter(todo => !todo.isComplete),
     })),

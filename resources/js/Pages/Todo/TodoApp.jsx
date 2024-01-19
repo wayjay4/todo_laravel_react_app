@@ -1,4 +1,4 @@
-import {useEffect, useMemo, useRef} from "react";
+import {useEffect, useRef} from "react";
 import { Head } from '@inertiajs/react';
 import NoTodos from './Components/NoTodos';
 import TodoList from './Components/TodoList';
@@ -7,10 +7,26 @@ import {CSSTransition, SwitchTransition} from "react-transition-group";
 import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
 export default function TodoApp() {
-    const todos = useTodoStore(state => state.todos);
-    const name = useTodoStore(state => state.name);
-    const handleNameInput = useTodoStore(state => state.handleNameInput);
+    const [todos, saveTodosInLocalStorage] = [
+        useTodoStore(state => state.todos),
+        useTodoStore(state => state.saveTodosInLocalStorage)
+    ];
+    const [name, handleNameInput, saveNameInLocalStorage] = [
+        useTodoStore(state => state.name),
+        useTodoStore(state => state.handleNameInput),
+        useTodoStore(state => state.saveNameInLocalStorage),
+    ];
     const nameInputEl = useRef(null);
+
+    // on changes to todos, save in local storage
+    useEffect(() => {
+        saveTodosInLocalStorage(todos);
+    }, [todos]);
+
+    // on changes to name, save in local storage
+    useEffect(() => {
+        saveNameInLocalStorage(name);
+    }, [name]);
 
     useEffect(() => {
         nameInputEl.current.focus();
