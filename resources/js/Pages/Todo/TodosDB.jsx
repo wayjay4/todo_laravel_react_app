@@ -7,9 +7,8 @@ import {CSSTransition, SwitchTransition} from "react-transition-group";
 import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
 export default function TodosDB({todoss}) {
-    const [todos, saveTodosInLocalStorage, setTodos] = [
+    const [todos, setTodos] = [
         useTodoStore(state => state.todos),
-        useTodoStore(state => state.saveTodosInLocalStorage),
         useTodoStore(state => state.setTodos)
     ];
     const [name, handleNameInput, saveNameInLocalStorage] = [
@@ -22,11 +21,6 @@ export default function TodosDB({todoss}) {
     useEffect(() => {
         if(todoss.length > 0 && setTodos) setTodos(todoss);
     }, []);
-
-    // on changes to todos, save in local storage
-    useEffect(() => {
-        saveTodosInLocalStorage(todos);
-    }, [todos]);
 
     // on changes to name, save in local storage
     useEffect(() => {

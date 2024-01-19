@@ -27,13 +27,13 @@ function TodoList() {
     function handleDeleteTodo(id) {
         deleteTodo(id);
 
-        destroy('/todo/'+id);
+        destroy('/todo/'+id, {preserveScroll: true});
     }
 
     function handleCompleteTodo(id, value) {
         completeTodo(id);
 
-        patch('/todo/'+id+'?isComplete='+value);
+        patch('/todo/'+id+'?isComplete='+value, {preserveScroll: true});
     }
 
     function handleMarkAsEditing(id, value) {
@@ -42,26 +42,26 @@ function TodoList() {
         console.log('value:')
         console.log(value)
 
-        patch('/todo/'+id+'?isEditing='+value);
+        patch('/todo/'+id+'?isEditing='+value, {preserveScroll: true});
     }
 
     function handleEditTodoTitle(event, id, value) {
         if(event.key === 'Enter') {
             updateTodo(event, id);
 
-            patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value);
+            patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value, {preserveScroll: true});
         }
         else if(event.key === 'Escape') {
             cancelEdit(id);
 
-            patch('/todo/'+id+'?isEditing='+value);
+            patch('/todo/'+id+'?isEditing='+value, {preserveScroll: true});
         }
     }
 
     function handleEditTodoTitleOnBlur(event, id, value) {
         updateTodo(event, id);
 
-        patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value);
+        patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value, {preserveScroll: true});
     }
 
     return (

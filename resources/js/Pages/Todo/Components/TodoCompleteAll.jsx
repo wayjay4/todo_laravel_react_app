@@ -12,7 +12,7 @@ function TodoCompleteAll() {
     function handleCompleteAllTodos() {
         completeAllTodos();
 
-        patch('/todos/completeAllTodos');
+        patch('/todos/completeAllTodos', {preserveScroll: true});
     }
 
     return (
