@@ -16,6 +16,10 @@ Frontend installed packages:
 - **React Transition Group (defining entering and exiting transitions):** https://reactcommunity.org/react-transition-group/
 - **Zustand (global state management):** https://github.com/pmndrs/zustand
 
+Note:
+- using server-side mysql database to save todo data
+- using react zustand for props state management
+
 ## Installation
 
 Install Docker (v4.26.1)
