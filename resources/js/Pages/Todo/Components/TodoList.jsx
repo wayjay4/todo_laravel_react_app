@@ -6,7 +6,6 @@ import TodoFilters from "@/Pages/Todo/Components/TodoFilters.jsx";
 import useToggle from "@/Pages/Todo/Hooks/useToggle.js";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
-import {useForm} from "@inertiajs/react";
 
 function TodoList() {
     const todosFiltered = useTodoStore(state => state.todosFiltered);
@@ -20,50 +19,6 @@ function TodoList() {
     const [isFeaturesOneVisible, setIsFeaturesOneVisible] = useToggle();
     const [isFeaturesTwoVisible, setIsFeaturesTwoVisible] = useToggle();
 
-    const { data, setData, transform, patch, post, delete: destroy, submit, processing, errors } = useForm({
-        //
-    })
-
-    function handleDeleteTodo(id) {
-        deleteTodo(id);
-
-        destroy('/todo/'+id);
-    }
-
-    function handleCompleteTodo(id, value) {
-        completeTodo(id);
-
-        patch('/todo/'+id+'?isComplete='+value);
-    }
-
-    function handleMarkAsEditing(id, value) {
-        markAsEditing(id);
-
-        console.log('value:')
-        console.log(value)
-
-        patch('/todo/'+id+'?isEditing='+value);
-    }
-
-    function handleEditTodoTitle(event, id, value) {
-        if(event.key === 'Enter') {
-            updateTodo(event, id);
-
-            patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value);
-        }
-        else if(event.key === 'Escape') {
-            cancelEdit(id);
-
-            patch('/todo/'+id+'?isEditing='+value);
-        }
-    }
-
-    function handleEditTodoTitleOnBlur(event, id, value) {
-        updateTodo(event, id);
-
-        patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value);
-    }
-
     return (
         <>
             <TransitionGroup component="ul" className="todo-list">
@@ -71,14 +26,10 @@ function TodoList() {
                     <CSSTransition key={todo.id} timeout={300} classNames="slide-horizontal">
                         <li key={todo.id} className="todo-item-container">
                             <div className="todo-item">
-                                <input type="checkbox" checked={!!todo.isComplete} onChange={(e) => handleCompleteTodo(todo.id, e.target.checked)} />
+                                <input type="checkbox" checked={!!todo.isComplete} onChange={() => completeTodo(todo.id)} />
                                 { !todo.isEditing ?
                                     (
-                                        <span
-                                            style={{marginLeft: '16px'}}
-                                            className={`todo-item-label, ${todo.isComplete ? 'line-through' : ''}`}
-                                            onDoubleClick={()=>handleMarkAsEditing(todo.id, true)}
-                                        >
+                                        <span style={{marginLeft: '16px'}} className={`todo-item-label, ${todo.isComplete ? 'line-through' : ''}`} onDoubleClick={()=>markAsEditing(todo.id)}>
                                             {todo.title}
                                         </span>
                                     )
@@ -88,14 +39,21 @@ function TodoList() {
                                             type="text"
                                             className="todo-item-input"
                                             defaultValue={todo.title}
-                                            onBlur={(e) => handleEditTodoTitleOnBlur(e, todo.id, false)}
-                                            onKeyDown={(e) => {handleEditTodoTitle(e, todo.id, false)}}
+                                            onBlur={(event) => updateTodo(event,todo.id)}
+                                            onKeyDown={event => {
+                                                if(event.key === 'Enter') {
+                                                    updateTodo(event, todo.id);
+                                                }
+                                                else if(event.key === 'Escape') {
+                                                    cancelEdit(todo.id);
+                                                }
+                                            }}
                                             autoFocus
                                         />
                                     )
                                 }
                             </div>
-                            <button onClick={()=>handleDeleteTodo(todo.id)} className="x-button">
+                            <button onClick={()=>deleteTodo(todo.id)} className="x-button">
                                 <svg
                                     className="x-button-icon"
                                     fill="none"
