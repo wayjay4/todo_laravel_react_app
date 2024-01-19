@@ -29,11 +29,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/todoapp', function () {
-    return Inertia::render('Todo/TodoApp');
-})->name('todo_app');
-
-Route::get('/todos', [\App\Http\Controllers\TodoController::class, 'index'])->name('todos.index');
+Route::get('/todoapp', [\App\Http\Controllers\TodoController::class, 'index'])->name('todos.index');
 Route::post('/todos', [\App\Http\Controllers\TodoController::class, 'store'])->name('todos.store');
 Route::post('/todos', [\App\Http\Controllers\TodoController::class, 'store'])->name('todos.store');
 Route::delete('/todo/{todo}', [\App\Http\Controllers\TodoController::class, 'destroy'])->name('todo.destroy');
