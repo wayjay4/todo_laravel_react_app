@@ -15,7 +15,7 @@ class TodoController extends Controller
     public function index(): \Inertia\Response
     {
         return Inertia::render('Todo/TodosDB', [
-            'todoss' => Todo::all()
+            'todos' => Todo::all()
         ]);
     }
 
@@ -30,14 +30,12 @@ class TodoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTodoRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreTodoRequest $request): void
     {
         $data = $request->validationData();
         $todo = new Todo();
         $todo['title'] = $data['title'];
         $todo->save();
-
-        return to_route('todos.index');
     }
 
     /**
@@ -59,7 +57,7 @@ class TodoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTodoRequest $request, Todo $todo): \Illuminate\Http\RedirectResponse
+    public function update(UpdateTodoRequest $request, Todo $todo): void
     {
         $data = $request->validationData();
 
@@ -76,8 +74,6 @@ class TodoController extends Controller
         }
 
         $todo->save();
-
-        return to_route('todos.index');
     }
 
     /**
@@ -88,21 +84,17 @@ class TodoController extends Controller
         $todo->delete();
     }
 
-    public function completeAllTodos(UpdateTodoRequest $request): \Illuminate\Http\RedirectResponse
+    public function completeAllTodos(UpdateTodoRequest $request): void
     {
         $ids = Todo::where('isComplete', 0)->pluck('id');
 
         Todo::whereIn('id', $ids)->update(['isComplete' => 1]);
-
-        return to_route('todos.index');
     }
 
-    public function clearCompletedTodos(UpdateTodoRequest $request): \Illuminate\Http\RedirectResponse
+    public function clearCompletedTodos(UpdateTodoRequest $request): void
     {
         $ids = Todo::where('isComplete', 1)->pluck('id');
 
         Todo::whereIn('id', $ids)->delete();
-
-        return to_route('todos.index');
     }
 }

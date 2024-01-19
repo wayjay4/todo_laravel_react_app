@@ -10,11 +10,6 @@ import {useForm} from "@inertiajs/react";
 
 function TodoList() {
     const todosFiltered = useTodoStore(state => state.todosFiltered);
-    const deleteTodo = useTodoStore(state => state.deleteTodo);
-    const completeTodo = useTodoStore(state => state.completeTodo);
-    const markAsEditing = useTodoStore(state => state.markAsEditing);
-    const cancelEdit = useTodoStore(state => state.cancelEdit);
-    const updateTodo = useTodoStore(state => state.updateTodo);
 
     const [filter, setFilter] = useState('all');
     const [isFeaturesOneVisible, setIsFeaturesOneVisible] = useToggle();
@@ -25,42 +20,27 @@ function TodoList() {
     })
 
     function handleDeleteTodo(id) {
-        deleteTodo(id);
-
         destroy('/todo/'+id, {preserveScroll: true});
     }
 
     function handleCompleteTodo(id, value) {
-        completeTodo(id);
-
         patch('/todo/'+id+'?isComplete='+value, {preserveScroll: true});
     }
 
     function handleMarkAsEditing(id, value) {
-        markAsEditing(id);
-
-        console.log('value:')
-        console.log(value)
-
         patch('/todo/'+id+'?isEditing='+value, {preserveScroll: true});
     }
 
     function handleEditTodoTitle(event, id, value) {
         if(event.key === 'Enter') {
-            updateTodo(event, id);
-
             patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value, {preserveScroll: true});
         }
         else if(event.key === 'Escape') {
-            cancelEdit(id);
-
             patch('/todo/'+id+'?isEditing='+value, {preserveScroll: true});
         }
     }
 
     function handleEditTodoTitleOnBlur(event, id, value) {
-        updateTodo(event, id);
-
         patch('/todo/'+id+'?isEditing='+value+'&title='+event.target.value, {preserveScroll: true});
     }
 

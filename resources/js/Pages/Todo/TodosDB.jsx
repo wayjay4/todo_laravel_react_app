@@ -6,7 +6,7 @@ import TodoForm from "@/Pages/Todo/Components/TodoForm.jsx";
 import {CSSTransition, SwitchTransition} from "react-transition-group";
 import useTodoStore from "@/Pages/Todo/Stores/TodoStore.js";
 
-export default function TodosDB({todoss}) {
+export default function TodosDB(props) {
     const [todos, setTodos] = [
         useTodoStore(state => state.todos),
         useTodoStore(state => state.setTodos)
@@ -19,8 +19,10 @@ export default function TodosDB({todoss}) {
     const nameInputEl = useRef(null);
 
     useEffect(() => {
-        if(todoss.length > 0 && setTodos) setTodos(todoss);
-    }, []);
+        if (setTodos) {
+            setTodos(props.todos);
+        }
+    }, [props.todos]);
 
     // on changes to name, save in local storage
     useEffect(() => {
