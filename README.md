@@ -64,7 +64,11 @@ Create an MySql database. You can also use another database (MySQL, Postgres), s
 - open .env file and change db settings as needed
 - make database as needed
 
-Run database migrations and seeder:
+![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
+
+![mysql_make_database_screenshot.png](public%2Fimages%2Fmysql_make_database_screenshot.png)
+
+- Run database migrations and seeder:
 
 ```sh
 php artisan migrate --seed
