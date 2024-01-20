@@ -26,25 +26,18 @@ Clone the repo locally:
 
 ```sh
 git clone https://github.com/wayjay4/todo_laravel_react_app.git todoapp
+```
+
+Go into todoapp dir:
+
+```sh
 cd todoapp
-```
-
-Setup configuration:
-
-```sh
-cp .env.example .env
-```
-
-Generate application key:
-
-```sh
-php artisan key:generate
 ```
 
 Install PHP dependencies (composer v2.6.6):
 
 ```sh
-php composer install
+composer install
 ```
 
 Install NPM dependencies (node v21.6.0, npm v10.3.0):
@@ -59,7 +52,19 @@ Build assets:
 npm run build
 ```
 
-Create an MySql database. You can also use another database (MySQL, Postgres), simply update your configuration accordingly.
+Setup configuration:
+
+```sh
+cp .env.example .env
+```
+
+Generate application key:
+
+```sh
+php artisan key:generate
+```
+
+Create an MySql database. You can also use another database (SQLite, Postgres), simply update your configuration accordingly.
 
 - open .env file and change db settings as needed
 - make database as needed
@@ -71,7 +76,7 @@ Create an MySql database. You can also use another database (MySQL, Postgres), s
 Run database migrations and seeder:
 
 ```sh
-php artisan migrate --seed
+php artisan migrate:fresh --seed
 ```
 
 Run the dev server (the output will give the address):
@@ -81,6 +86,4 @@ php artisan serve
 ```
 
 You're ready to go! Visit Todo App in your browser:
-
-http://localhost
 
