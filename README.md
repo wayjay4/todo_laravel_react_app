@@ -68,7 +68,7 @@ Create an MySql database. You can also use another database (MySQL, Postgres), s
 
 ![mysql_make_database_screenshot.png](public%2Fimages%2Fmysql_make_database_screenshot.png)
 
-- Run database migrations and seeder:
+Run database migrations and seeder:
 
 ```sh
 php artisan migrate --seed
