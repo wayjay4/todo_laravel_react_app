@@ -64,7 +64,7 @@ Generate application key:
 php artisan key:generate
 ```
 
-Create an MySql database. You can also use another database (SQLite, Postgres), simply update your configuration accordingly.
+Create a MySql database. You can also use another database (SQLite, Postgres), simply update your configuration accordingly.
 
 - open .env file and change db settings as needed
 - make database as needed
