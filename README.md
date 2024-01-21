@@ -101,10 +101,12 @@ You're ready to go! Visit Todo App in your browser!
 
 ![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
 
-#### Install Docker/Sail:
+Install Docker
 
 Make sure you have installed and started Docker Desktop Application:
 - https://www.docker.com/
+
+Install Sail
 
 ```sh
 php artisan sail:install
