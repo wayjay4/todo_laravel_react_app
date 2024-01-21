@@ -10,6 +10,8 @@ with Breeze, Inertia, React, and PHP Unit testing scaffolding
 
 Frontend Framework:
 - **React v8.2.0:** https://react.dev/
+- Node v20.11.0
+- Npm v10.3.0
 
 Frontend installed packages:
 - **Prop Types (typechecking):** https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
