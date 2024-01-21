@@ -20,7 +20,7 @@ Note:
 - using server-side mysql database to save todo data
 - using react zustand for props state management
 
-## Installation
+## Local Dev Installation
 
 Clone the repo locally:
 
@@ -64,7 +64,13 @@ Generate application key:
 php artisan key:generate
 ```
 
-Create a MySql database. You can also use another database (SQLite, Postgres), simply update your configuration accordingly.
+Two options to serve the Todo Application
+- using php artisan serve and local database (see instructions below)
+- using docker service container (see instructions below)
+
+### Serve application with php artisan and local database
+
+Create a local MySql database. You can also use another database (SQLite, Postgres), simply update your configuration accordingly.
 
 - open .env file and change db settings as needed
 - make database as needed
@@ -85,5 +91,42 @@ Run the dev server (the output will give the address):
 php artisan serve
 ```
 
-You're ready to go! Visit Todo App in your browser:
+You're ready to go! Visit Todo App in your browser!
 
+---
+
+### Serve application with Docker/Sail
+
+- open .env file and change db settings as needed
+
+![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
+
+Install Docker/Sail:
+
+```sh
+php artisan sail:install
+```
+
+Start Docker/Sail:
+
+```sh
+./vendor/bin/sail up
+```
+Configuring A Shell Alias for 'sail' (optional)
+
+- https://laravel.com/docs/10.x/sail#configuring-a-shell-alias
+
+
+```sh
+sail up
+```
+
+Run database migrations and seeder for db service container:
+
+```sh
+sail artisan migrate:fresh --seed
+```
+
+You're ready to go! Visit Todo App in your browser!:
+
+http://localhost/
