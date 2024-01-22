@@ -42,17 +42,32 @@ Install PHP dependencies (composer v2.6.6):
 composer install
 ```
 
-Install NPM dependencies (node v21.6.0, npm v10.3.0):
+Install NPM dependencies (node v20.11.0, npm v10.3.0):
 
+**Node**
 ```sh
-npm install
+nvm install <version>
+...
+```sh
+nvm use <version>
 ```
+- https://stackoverflow.com/questions/7718313/how-to-change-to-an-older-version-of-node-js
+
+**Npm**
+```sh
+npm install npm@x.x.x -g
+```
+- https://stackoverflow.com/questions/9755841/how-can-i-change-the-version-of-npm-using-nvm
 
 Build assets:
 
 ```sh
-npm run build
+npm install
 ```
+```sh
+npm run dev
+```
+
 
 Setup configuration:
 
