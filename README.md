@@ -21,6 +21,7 @@ Frontend installed packages:
 Note:
 - using server-side mysql database to save todo data
 - using react zustand for props state management
+- Docker/Sail is installed
 
 ## Local Dev Installation
 
@@ -69,6 +70,13 @@ npm install
 npm run dev
 ```
 
+Two options to serve the Todo Application
+- 1.) using php artisan serve and local database (see instructions below)
+- 2.) using docker service container (see instructions below)
+
+---
+
+### 1.) Serve application with php artisan and local database
 
 Setup configuration:
 
@@ -82,12 +90,6 @@ Generate application key:
 php artisan key:generate
 ```
 
-Two options to serve the Todo Application
-- using php artisan serve and local database (see instructions below)
-- using docker service container (see instructions below)
-
-### Serve application with php artisan and local database
-
 Create a local MySql database. You can also use another database (SQLite, Postgres), simply update your configuration accordingly.
 
 - open .env file and change db settings as needed
@@ -96,6 +98,7 @@ Create a local MySql database. You can also use another database (SQLite, Postgr
 ![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
 
 ![mysql_make_database_screenshot.png](public%2Fimages%2Fmysql_make_database_screenshot.png)
+
 
 Run database migrations and seeder:
 
@@ -113,21 +116,29 @@ You're ready to go! Visit Todo App in your browser!
 
 ---
 
-### Serve application with Docker/Sail
+### 2.) Serve application with Docker/Sail
+
+Setup configuration:
+
+```sh
+cp .env.docker .env
+```
+
+Generate application key:
+
+```sh
+php artisan key:generate
+```
 
 - open .env file and change db settings as needed
 
 ![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
 
+
 Install Docker
 
 Make sure you have installed and started Docker Desktop Application:
 - https://www.docker.com/
-
-Install Sail
-
-```sh
-php artisan sail:install
 ```
 
 Start Docker/Sail:
@@ -135,6 +146,7 @@ Start Docker/Sail:
 ```sh
 ./vendor/bin/sail up
 ```
+
 Configuring A Shell Alias for 'sail' (optional)
 
 - https://laravel.com/docs/10.x/sail#configuring-a-shell-alias
