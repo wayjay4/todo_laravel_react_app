@@ -126,12 +126,12 @@ Generate application key:
 
 ```sh
 php artisan key:generate
+```
 
 Install Docker
 
 Make sure you have installed and started Docker Desktop Application:
 - https://www.docker.com/
-```
 
 Start Docker/Sail:
 
