@@ -97,8 +97,6 @@ Create a local MySql database. You can also use another database (SQLite, Postgr
 
 ![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
 
-![mysql_make_database_screenshot.png](public%2Fimages%2Fmysql_make_database_screenshot.png)
-
 
 Run database migrations and seeder:
 
@@ -128,12 +126,6 @@ Generate application key:
 
 ```sh
 php artisan key:generate
-```
-
-- open .env file and change db settings as needed
-
-![env_conf_mysql_setting_screenshot.png](public/images/env_conf_mysql_setting_screenshot.png)
-
 
 Install Docker
 
