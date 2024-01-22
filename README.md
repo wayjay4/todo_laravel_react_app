@@ -47,7 +47,7 @@ Install NPM dependencies (node v20.11.0, npm v10.3.0):
 **Node**
 ```sh
 nvm install <version>
-...
+```
 ```sh
 nvm use <version>
 ```
@@ -64,6 +64,7 @@ Build assets:
 ```sh
 npm install
 ```
+
 ```sh
 npm run dev
 ```
