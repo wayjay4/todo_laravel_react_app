@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand'
 
 const useTodoStore = create((set, get) => ({
     name: (localStorage.getItem('name')) ? JSON.parse(localStorage.getItem('name')) : '',
